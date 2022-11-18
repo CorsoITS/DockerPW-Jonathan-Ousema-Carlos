@@ -1,0 +1,39 @@
+version: "3"
+
+services:
+#  nodejs:
+#    image: its-nodejs
+#    build:
+#      context: nodejs
+#      dockerfile: Dockerfile
+    #ports:
+    #  - 9100:80
+    #deploy:
+    #  replicas: 3
+
+  net6:
+    image: its-net6
+    build:
+      context: catalogo
+      dockerfile: DockerfileBuild
+    #ports:
+    #  - 9101:80
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+
+  apigateway:
+    image: apigateway
+    build:
+      context: nginx
+      dockerfile: Dockerfile
+    ports:
+      - 9102:80
+
+#  react:
+#    image: ui
+#    build:
+#      context: react
+#      dockerfile: Dockerfile
+    #ports:
+    #  - 9103:3000 
+
